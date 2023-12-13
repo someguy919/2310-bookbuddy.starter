@@ -43,7 +43,7 @@ function App() {
   return (
     <>
     <h1><img id='logo-image' src={bookLogo}/><Link to='/'>Library App</Link></h1>
-    <Navigations/>
+    <Navigations user={user}/>
     <Routes>
       <Route path='/' element={<Homepage/>}/>
       <Route path='/successReg' element={<SuccessRegi />}/>

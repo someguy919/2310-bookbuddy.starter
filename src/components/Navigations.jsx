@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
 
-const Navigations = () => {
-    const token = window.localStorage.getItem('token')
+const Navigations = ({user}) => {
+    
     
     return (
         <nav>
             <Link to='/books'>Books</Link>
             {
-                token ? (
+                user.email ? (
                     <span>
                         <Link to="/account">User</Link>
                     </span>
