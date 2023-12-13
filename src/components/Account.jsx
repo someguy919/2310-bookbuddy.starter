@@ -9,7 +9,7 @@ const Account = ({user, setUser, setToken }) => {
         window.localStorage.removeItem('token');
         setToken(null)
         setUser({})
-        navigate('/books')
+        navigate('/')
     }
     if(!user.books){
         return null
@@ -20,8 +20,8 @@ const Account = ({user, setUser, setToken }) => {
             <h1>Account</h1>
             <button onClick={() => {logout()}}>Logout</button>
             <hr/>
-            <h3>We want some info about the user here!</h3>
-            <h4>This could be a good place to show checked out books here...</h4>
+            <h2>Email: {user.email}</h2>
+            <h4>This could be a good place to show checked out books...</h4>
             
             
            
