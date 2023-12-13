@@ -32,3 +32,4 @@ Details on the API can be found 🔗 [here]
 - [] apply some css so that we can see which link in the nav bar is selected
 - [] display a welcome message to a logged in user when viewing homepage otherwise, normal welcome 
 - [] all users can see an about us page 
+- [] more css!
