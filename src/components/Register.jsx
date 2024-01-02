@@ -1,36 +1,32 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
-    const [firstname, setFname] = useState("")
-    const [lastname, setLname] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState('')
+    const [firstname, setFname] = useState("");
+    const [lastname, setLname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState('');
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const user = {
-            firstname,
-            lastname,
-            email,
-            password
-        }
+        e.preventDefault();
+        const user = { firstname, lastname, email, password };
         try {
-            await axios.post('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register', user)
-            navigate('/successReg')
+            await axios.post('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register', user);
+            navigate('/successReg');
+            setFname('');
+            setLname('');
+            setEmail('');
+            setPassword('');
         } catch (error) {
-            setError(error.response.data.message)
-
+            setError(error.response?.data.message || "Error occurred during registration");
         }
-        
-        
-    }
+    };
 
-    return(
+    return (
         <div>
             <form onSubmit={handleSubmit} className="registerForm">
                 <label>
@@ -38,41 +34,38 @@ const Register = () => {
                     <input 
                         type="text"
                         value={firstname}
-                        onChange={(e) => {setFname(e.target.value)}}
-                />
+                        onChange={(e) => setFname(e.target.value)}
+                    />
                 </label>
                 <label>
                     Last Name:
                     <input 
                         type="text"
                         value={lastname}
-                        onChange={(e) => {setLname(e.target.value)}}
-                />
+                        onChange={(e) => setLname(e.target.value)}
+                    />
                 </label>
                 <label>
                     Email:
                     <input 
                         type="email"
-                        value = {email}
-                        onChange={(e) => {setEmail(e.target.value)}}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                 </label>
                 <label>
                     Password:
                     <input 
-                        type="text"
+                        type="password"
                         value={password}
-                        onChange={(e) => {setPassword(e.target.value)}}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
                 <button type="submit">Register</button>
             </form>
-            {
-                error ? <p>{error}</p> : null
-            }
+            {error && <p>{error}</p>}
         </div>
-    )
+    );
+};
 
-}
-
-export default Register
+export default Register;

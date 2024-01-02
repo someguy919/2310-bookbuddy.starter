@@ -1,27 +1,30 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
-const Navigations = ({user}) => {
-    
-    
+const Navigations = ({ user }) => {
+    const isLoggedIn = user && user.email;
+
+    const getNavLinkClass = ({ isActive }) => {
+        return isActive ? 'activeLink' : '';
+    };
+
     return (
         <nav>
-            <Link to='/books'>Books</Link>
-            {
-                user.email ? (
-                    <span>
-                        <Link to="/account">User</Link>
-                    </span>
-                
-                ) : (
-                    
-                    <span>
-                        <Link to="/login">Login</Link>
-                        <Link to='/register'>Register</Link>
-                    </span>
-                )
-            }
+            <NavLink to='/books' className={getNavLinkClass}>Books</NavLink>
+            <NavLink to='/about' className={({ isActive }) => isActive ? 'activeLink' : ''}>About Us</NavLink>
+            {isLoggedIn ? (
+                <>
+                    <NavLink to="/account" className={getNavLinkClass}>User</NavLink>
+                    <NavLink to='/checked-out' className={getNavLinkClass}>Checked Out Books</NavLink>
+                </>
+            ) : (
+                <>
+                    <NavLink to="/login" className={getNavLinkClass}>Login</NavLink>
+                    <NavLink to='/register' className={getNavLinkClass}>Register</NavLink>
+                   
+                </>
+            )}
         </nav>
-    )
+    );
 }
 
-export default Navigations
+export default Navigations;

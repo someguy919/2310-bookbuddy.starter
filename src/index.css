@@ -31,3 +31,23 @@ nav a{
   display: flex;
   flex-wrap: wrap;
 }
+
+.activeLink {
+  color: #fdfdfd; 
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: black;
+}
+
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.user-status {
+  font-size: 0.9rem;
+  text-align: right;
+}
